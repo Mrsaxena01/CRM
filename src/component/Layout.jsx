@@ -21,7 +21,7 @@ function Layout({ children }) {
         <Navbar />
 
         {/* Main Content (scrollable area) */}
-        <main className="flex-1 mt-5 mb-12 p-6 overflow-y-auto">
+        <main className="flex-1 mt-2 mb-12 p-6 overflow-y-auto">
           {children}
         </main>
 

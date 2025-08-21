@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // Card Component with dynamic colors
-const StatCard = ({ title, value, icon, secondaryText, colorTheme = "primary" }) => {
+export const StatCard = ({ title, value, icon, secondaryText, colorTheme = "primary" }) => {
   const getColorClasses = (theme) => {
     switch (theme) {
       case "success":
@@ -149,7 +149,7 @@ function Dashboard() {
   return (
     <Layout>
       {/* Fixed positioning - navbar के पीछे रहने के लिए */}
-      <div className="min-h-screen bg-gradient-to-br from-[#020d18] via-[#061626] to-[#081b29] p-10 pt-15 rounded-lg relative z-10">
+      <div className="min-h-screen bg-gradient-to-br from-[#020d18] via-[#061626] to-[#081b29] p-10  rounded-lg relative z-10">
         {/* pt-24 navbar के लिए proper space, z-index remove किया */}
         
         <div className="max-w-7xl mx-auto space-y-6">
