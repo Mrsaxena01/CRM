@@ -1,45 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faHome, 
-  faUser, 
-  faCog, 
-  faEnvelope, 
-  faChartLine,
-  faSignOutAlt,
-  faChevronLeft,
-  faChevronRight
+  faHome, faUsers, faCog, faCalendarDays,
+  faProjectDiagram, faSignOutAlt, faChevronLeft,
+  faChevronRight, faClipboardList, faChartBar
 } from '@fortawesome/free-solid-svg-icons';
+import { useSidebar } from '../context/SidebarContext';  // ✅ import context
 
 function Slider() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, toggleSidebar } = useSidebar();  // ✅ use context
+  const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Dashboard', icon: faHome },
-    { name: 'Profile', icon: faUser },
-    { name: 'Settings', icon: faCog },
-    { name: 'Messages', icon: faEnvelope },
-    { name: 'Analytics', icon: faChartLine },
+    { name: 'Dashboard', icon: faHome, path: '/dashboard' },
+    { name: 'Users', icon: faUsers, path: '/users' },
+    { name: 'Settings', icon: faCog, path: '/setting' },
+    { name: 'Projects', icon: faProjectDiagram, path: '/project' },
+    { name: 'Leaves', icon: faCalendarDays, path: '/leaves' },
+    { name: 'Attendance Report', icon: faClipboardList, path: '/attendanceReport' },
+    { name: 'Attendance Summary', icon: faChartBar, path: '/attendanceSummary' },
   ];
+
+  const handleNavigation = (path) => navigate(path);
+  const handleLogout = () => navigate('/login');
 
   return (
     <div
-      className={`fixed top-0 left-0 h-screen bg-[#081b29] text-white transition-all duration-300 ease-in-out ${
-        isOpen ? 'w-64' : 'w-16'
-      } shadow-lg`}
+      className={`fixed top-0 left-0 h-screen bg-[#081b29] text-white 
+      transition-all duration-300 ease-in-out ${isOpen ? 'w-64' : 'w-16'} shadow-lg`}
     >
-      {/* Header Section with Logo and Toggle */}
+      {/* Header Section */}
       <div className="flex items-center justify-between p-4 border-b border-[#0ef]/20">
         <div className="flex items-center">
           {isOpen ? (
-            <img
-              src="../public/BIREENA-INFO-TECH.jpg"
-              alt="Logo"
-              className="w-40 h-12 object-contain"
-            />
+            <img src="/BIREENA-INFO-TECH.jpg" alt="Logo" className="w-40 h-12 object-contain" />
           ) : (
             <button
-              onClick={() => setIsOpen(true)}
+              onClick={toggleSidebar}
               className="w-8 h-8 flex items-center justify-center bg-[#0ef]/10 text-[#0ef] rounded-md hover:bg-[#0ef]/20 transition-colors"
             >
               <FontAwesomeIcon icon={faChevronRight} className="text-sm" />
@@ -48,7 +46,7 @@ function Slider() {
         </div>
         {isOpen && (
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={toggleSidebar}
             className="w-8 h-8 flex items-center justify-center bg-[#0ef]/10 text-[#0ef] rounded-md hover:bg-[#0ef]/20 transition-colors"
           >
             <FontAwesomeIcon icon={faChevronLeft} className="text-sm" />
@@ -61,37 +59,30 @@ function Slider() {
         {menuItems.map((item, index) => (
           <div
             key={index}
-            className={`flex items-center cursor-pointer px-4 py-3 hover:bg-[#0ef]/10 transition-colors
+            onClick={() => handleNavigation(item.path)}
+            className={`flex items-center cursor-pointer px-4 py-3 
+              hover:bg-[#0ef]/10 transition-colors 
               ${isOpen ? 'justify-start' : 'justify-center'}`}
           >
             <div className="w-8 h-8 flex items-center justify-center">
-              <FontAwesomeIcon 
-                icon={item.icon} 
-                className={`${isOpen ? 'text-lg' : 'text-xl'} text-[#0ef]`} 
-              />
+              <FontAwesomeIcon icon={item.icon} className={`${isOpen ? 'text-lg' : 'text-xl'} text-[#0ef]`} />
             </div>
-            {isOpen && (
-              <span className="ml-3 text-sm font-medium">{item.name}</span>
-            )}
+            {isOpen && <span className="ml-3 text-sm font-medium">{item.name}</span>}
           </div>
         ))}
       </div>
 
-      {/* Bottom Section */}
+      {/* Bottom Logout */}
       <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#0ef]/20">
         <div
-          className={`flex items-center cursor-pointer px-4 py-3 hover:bg-[#0ef]/10 transition-colors
-            ${isOpen ? 'justify-start' : 'justify-center'}`}
+          onClick={handleLogout}
+          className={`flex items-center cursor-pointer px-4 py-3 hover:bg-[#0ef]/10 transition-colors 
+          ${isOpen ? 'justify-start' : 'justify-center'}`}
         >
           <div className="w-8 h-8 flex items-center justify-center">
-            <FontAwesomeIcon 
-              icon={faSignOutAlt} 
-              className={`${isOpen ? 'text-lg' : 'text-xl'} text-[#0ef]`} 
-            />
+            <FontAwesomeIcon icon={faSignOutAlt} className={`${isOpen ? 'text-lg' : 'text-xl'} text-[#0ef]`} />
           </div>
-          {isOpen && (
-            <span className="ml-3 text-sm font-medium">Logout</span>
-          )}
+          {isOpen && <span className="ml-3 text-sm font-medium">Logout</span>}
         </div>
       </div>
     </div>
