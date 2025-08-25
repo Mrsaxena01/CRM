@@ -13,7 +13,7 @@ function Slider() {
   const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Dashboard', icon: faHome, path: '/dashboard' },
+    { name: 'Dashboard', icon: faHome, path: '/OwnerDashboard' },
     { name: 'Users', icon: faUsers, path: '/users' },
     { name: 'Settings', icon: faCog, path: '/setting' },
     { name: 'Projects', icon: faProjectDiagram, path: '/project' },
