@@ -1,15 +1,14 @@
-import React from "react";
-import Layout from "./Layout";
+import Layout  from './Layout'
+import React from 'react'
 
-function Setting() {
+const Setting = () => {
   return (
     <Layout>
-      <h2 className="text-2xl font-bold text-gray-800">Welcome to Setting</h2>
-      <p className="mt-4 text-gray-600">
-        This is your main setting content.
-      </p>
+      <div>
+      Settings
+    </div>
     </Layout>
-  );
+  )
 }
 
-export default Setting;
+export default Setting

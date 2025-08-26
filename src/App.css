@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+/* index.css ya App.css me daaliye */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(56%) sepia(94%) saturate(7470%) hue-rotate(134deg) brightness(105%) contrast(101%);
+}
 
 
 .logo {
@@ -41,4 +45,60 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+.app-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.header {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.metrics {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.metric {
+  background: #eef;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.todo-list {
+  grid-column: span 2;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.attention-required,
+.hire-efficiency {
+  grid-column: span 1;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
 }
